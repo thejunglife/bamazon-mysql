@@ -37,13 +37,30 @@ let purchaseItem = () => {
           }
         ])
         .then(answers => {
-          let itemChoice
+          
          for (let i = 0; i < data.length; i++) {
            if (data[i].item_id === parseInt(answers.item)) {
              if (data[i].stock_quantity >= parseInt(answers.quantity)) {
-               console.log('hi')
+              let itemPrice = parseInt(data[i].price)
+               db.query(`UPDATE products SET stock_quantity = ${data[i].stock_quantity} - ${parseInt(answers.quantity)} WHERE item_id = ${data[i].item_id}`, (e, data) => {
+                 if (e) {
+                   console.log(e)
+                 }
+                 let sum = `${itemPrice} `
+                 console.log(`
+                 -------------------------------------------------------------------
+                 Your Purchase was successful!!!!
+                 Your total is $${itemPrice * parseInt(answers.quantity)} dollars
+                 -------------------------------------------------------------------
+                 `)
+                 purchaseItem()
+               })
              } else {
-               console.log('Insufficient quantity!')
+               console.log(`
+               ---------------------------------------------------------------------
+               Insufficient quantity!
+               ---------------------------------------------------------------------
+               `)
                purchaseItem()
              }
            } 
@@ -52,3 +69,5 @@ let purchaseItem = () => {
         .catch(e => console.log(e))
   })
 }
+
+
