@@ -1,0 +1,3 @@
+USE bamazon_db;
+INSERT INTO products(product_name, department_name, price, stock_quantity) 
+VALUES('ipad mini', 'electronics', 200, 5), ('iphone X', 'electronics', 1000, 3), ('sony 65inch tv', 'electronics', 500, 2), ('StarWars lego', 'toys', 100, 10), ('Hot Cheetos', 'food', 2, 50), ('Nike hat', 'clothes', 20, 30), ('hand towels', 'clothes', 5, 30), ('rubber duckies', 'toys', 1, 200), ('keyboard', 'electronics', 40, 10), ('universal phone charger', 'electornics', 4, 40);
